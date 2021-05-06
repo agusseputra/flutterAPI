@@ -47,15 +47,15 @@ class GridUser extends StatelessWidget {
                       return InkWell(
                         splashColor: Colors.indigo,
                         borderRadius: BorderRadius.circular(10.0),
-                        child: itemUser(listUser[index]),
-                        onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Updateuser(
-                              user: listUser[index]
-                                )));
-                        },
+                        child: itemUser(listUser[index], context),
+                    //     onTap: () {
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => Updateuser(
+                    //           user: listUser[index]
+                    //             )));
+                    //     },
                       );
                     },
                   );

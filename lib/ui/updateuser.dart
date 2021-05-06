@@ -27,6 +27,7 @@ class _UpdateuserState extends State<Updateuser> {
       _formKey.currentState.save();
       if(_isupdate){
         //update
+        response = await ApiService.updateUser(id, fName.text, lName.text,email.text,'av1.png');
       }else{
         //simpan
         response = await ApiService.saveMember(fName.text, lName.text,email.text,'av1.png');
