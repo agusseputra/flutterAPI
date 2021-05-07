@@ -17,8 +17,7 @@ void delete(id, context) async{
         Toast.show('Gagal', context);
       }
 }
-Widget itemUser(User user, BuildContext context) {
-  
+Widget itemUser(User user, BuildContext context) {  
   return Card(
     elevation: 2,
     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),

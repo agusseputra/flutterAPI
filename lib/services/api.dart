@@ -26,9 +26,9 @@ class ApiService {
   static baseUrl(){
     return _baseurl;
   }
-  static Future<ResponsePost> saveMember(fName, lName, eMail, avatar) async {
+  static Future<ResponsePost> saveMember(fName, lName, eMail, avatar, gender) async {
     try {
-      final response = await http.post('$_host/member', body: {'first_name': fName, 'last_name': lName, 'email':eMail, 'avatar':avatar});
+      final response = await http.post('$_host/member', body: {'first_name': fName, 'last_name': lName, 'email':eMail, 'avatar':avatar,'gender':gender});
         if (response.statusCode == 200) {
           ResponsePost responseRequest = ResponsePost.fromJson(jsonDecode(response.body));
           return responseRequest;
@@ -40,9 +40,9 @@ class ApiService {
     }
     
   }
-  static Future<ResponsePost> updateUser(id, fName, lName, eMail, avatar) async {
+  static Future<ResponsePost> updateUser(id, fName, lName, eMail, avatar, gender) async {
     try {
-      final response = await http.post('$_host/member/$id', body: {'first_name': fName, 'last_name': lName, 'email':eMail, 'avatar':avatar});
+      final response = await http.post('$_host/member/$id', body: {'first_name': fName, 'last_name': lName, 'email':eMail, 'avatar':avatar,'gender':gender});
       if (response.statusCode == 200) {
         ResponsePost responseRequest = ResponsePost.fromJson(jsonDecode(response.body));
         return responseRequest;

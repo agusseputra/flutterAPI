@@ -47,6 +47,7 @@ class User {
         this.firstName,
         this.lastName,
         this.avatar,
+        this.gender,
     });
 
     int id;
@@ -54,6 +55,7 @@ class User {
     String firstName;
     String lastName;
     String avatar;
+    String gender;
 
     factory User.fromJson(Map<String, dynamic> json) => User(
         id: json["id"],
@@ -61,6 +63,7 @@ class User {
         firstName: json["first_name"],
         lastName: json["last_name"],
         avatar: json["avatar"],
+        gender: json["gender"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -69,5 +72,6 @@ class User {
         "first_name": firstName,
         "last_name": lastName,
         "avatar": avatar,
+        "gender": gender,
     };
 }

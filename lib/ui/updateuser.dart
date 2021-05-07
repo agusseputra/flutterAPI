@@ -20,17 +20,17 @@ class _UpdateuserState extends State<Updateuser> {
   bool _isupdate=false;
   ResponsePost response;
   bool _success;
-  String id;
+  String id, _gender;
   TextEditingController  fName, lName, email;
   void validasi() async{
     if(_formKey.currentState.validate()){
       _formKey.currentState.save();
       if(_isupdate){
         //update
-        response = await ApiService.updateUser(id, fName.text, lName.text,email.text,'av1.png');
+        response = await ApiService.updateUser(id, fName.text, lName.text,email.text,'av1.png',_gender);
       }else{
         //simpan
-        response = await ApiService.saveMember(fName.text, lName.text,email.text,'av1.png');
+        response = await ApiService.saveMember(fName.text, lName.text,email.text,'av1.png',_gender);
       }
       _success=response.success;
       if (_success) {
@@ -51,6 +51,11 @@ class _UpdateuserState extends State<Updateuser> {
     else
       return null;
   }
+   void _handleRadioValueChange1(String value) {
+    setState(() {
+      _gender = value;
+    });
+  }
 
   @override
   void initState() {
@@ -61,10 +66,12 @@ class _UpdateuserState extends State<Updateuser> {
       fName=TextEditingController(text:widget.user.firstName);
       lName=TextEditingController(text: widget.user.lastName);
       email=TextEditingController(text: widget.user.email);
+      _gender=widget.user.gender;
     }else{
       fName=TextEditingController();
       lName=TextEditingController();
       email=TextEditingController();
+       _gender="L";
     }
   }
   @override
@@ -73,7 +80,7 @@ class _UpdateuserState extends State<Updateuser> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(40.0),
         child: AppBar(
-          title: _isupdate ? Text('Update Data') : Text('Tambah Data'),
+          title: _isupdate ? Text('Update Member') : Text('Tambah Member'),
           ),
         ),
         body: SingleChildScrollView(
@@ -105,6 +112,40 @@ class _UpdateuserState extends State<Updateuser> {
                       labelText: "Last Name",
                     ),
                     validator: validator,
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Text("Gender"),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          new Radio(
+                            value: "L",
+                            groupValue: _gender,
+                            onChanged: _handleRadioValueChange1,
+                          ),
+                          new Text(
+                            'Laki-Laki'
+                          ),
+                          new Radio(
+                            value: "P",
+                            groupValue: _gender,
+                            onChanged: _handleRadioValueChange1,
+                          ),
+                          new Text(
+                            'Perempuan'
+                          ),
+                        ],
+                      )
+                    ],
                   ),
                 ),
                 Padding(
